@@ -30,4 +30,19 @@ public class MemberDAOTest {
 		
 		dao.insertMember(vo);
 	}
+	
+	@Test
+	public void testreadMember() throws Exception {
+		MemberVO vo = dao.readMember("user02");
+		
+		System.out.println(vo);
+	}
+	
+	@Test
+	public void testReadMemberWithPW() throws Exception{
+		MemberVO vo = dao.readWithPW("user02", "1234");
+		
+		System.out.println(vo);
+		
+	}
 }
