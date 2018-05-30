@@ -3,14 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://192.168.0.203:3306/book_ex"></property>
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="url" value="jdbc:log4jdbc:mysql://192.168.0.203:3306/book_ex"></property>
 		<property name="username" value="book_tester"></property>
 		<property name="password" value="alsrbs3193!"></property>	
 		<property name="connectionProperties">
@@ -21,8 +23,22 @@
 		</property>
 	</bean>	
 	
-	<bean id="sqlSessionFctory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+		<!-- mappers 폴다 안을 다 찾아 앞은 상관없고 Mapper.xml로 된것을 실행 -->
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<!-- MemberDAOImpl.java에 잇는 @Repository가 된 것을  org.study.spring.persistence 에서 찾겟다
+		context:component-scan : bean을 찾는 태그 -->
+	<context:component-scan base-package="org.study.spring"></context:component-scan>
+	
+	
 </beans>
+
+
