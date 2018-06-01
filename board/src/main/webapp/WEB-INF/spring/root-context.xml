@@ -22,5 +22,16 @@
 			</props>
 		</property>
 	</bean>	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+		<!-- mappers 폴다 안을 다 찾아 앞은 상관없고 Mapper.xml로 된것을 실행 -->
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+	</bean>
 	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<context:component-scan base-package="org.study.board"></context:component-scan>
 </beans>
