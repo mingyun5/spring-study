@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="org.study.spring">
+	<logger name="org.study.board">
 		<level value="info" />
 	</logger>
 	

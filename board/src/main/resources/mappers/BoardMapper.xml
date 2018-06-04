@@ -7,7 +7,8 @@
   		insert into tbl_board (title, content, writer)
   		values (#{title}, #{content},#{writer})
   	</insert>
-  	<select id="read" resultType="org.study.board.model.BoardVO">
+  	<!-- rseultType을 mybatis-config.xml에 typeAliases를 추가하여 줄여 쓸수 있다. -->
+  	<select id="read" resultType="BoardVO">
   		select * from tbl_board where bno = #{bno}
   	</select>
   	

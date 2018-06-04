@@ -33,5 +33,6 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<!-- component들을 org.study.board에 위치한것들을 스캔하라 -->
 	<context:component-scan base-package="org.study.board"></context:component-scan>
 </beans>
