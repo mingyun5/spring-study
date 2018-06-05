@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.study.board.model.BoardVO;
 import org.study.board.service.BoardService;
 
@@ -27,7 +29,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/register" , method=RequestMethod.POST)
-	public String registerPost(BoardVO board, Model model) {
+	public String registerPost(BoardVO board, RedirectAttributes rttr) {
 		logger.info("register post" + board);
 		
 		try {
@@ -37,14 +39,23 @@ public class BoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("result", "success");
+		rttr.addFlashAttribute("result", "success");
 		return "redirect:/board/listAll";
 	}
 	
+//	Model 객체를 전달하는 박스 같은 것
 	@RequestMapping(value="listAll", method=RequestMethod.GET)
-	public String listAll() throws Exception{
+	public String listAll(Model model) throws Exception{
 		logger.info("show all list");
-		
+//		리스트 가지고오기
+		model.addAttribute("list", service.listAll()); 
+//		경로
 		return "board/list";
+	}
+	
+	@RequestMapping(value="read", method=RequestMethod.GET)
+	public String read(@RequestParam("bno") int bno, Model model) throws Exception{
+		model.addAttribute(service.read(bno)); 
+		return "board/read";
 	}
 }

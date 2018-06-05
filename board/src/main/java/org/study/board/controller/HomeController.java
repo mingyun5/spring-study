@@ -36,4 +36,13 @@ public class HomeController {
 		return "board/home";
 	}
 	
+	@RequestMapping(value = "/paramtest")
+	public String paramTest() {
+		return "test";
+	}
+	
+	@RequestMapping(value = "/paramRequest",method=RequestMethod.GET)
+	public String paramRequest() {
+		return "test_form";
+	}
 }
