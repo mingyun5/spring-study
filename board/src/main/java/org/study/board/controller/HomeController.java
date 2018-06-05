@@ -1,4 +1,4 @@
-package org.study.board;
+package org.study.board.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "board/home";
 	}
 	
 }

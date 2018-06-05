@@ -4,8 +4,11 @@
 
 
 <h1>
-	게시물 등록
+	게시물 list
 </h1>
+<div>
+	${result }
+</div>
 <form role="form" action="/board/register" method="post">
 	<div class="box-body">
 		<div class="form-group">
