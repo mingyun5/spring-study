@@ -7,13 +7,13 @@
 
 
 <h1>게시물 리스트</h1>
-<!-- <script>
+<script>
 	var result = '${result}';
 	
 	if(result == 'success'){
 		alert("처리가 완료 되었습니다.")
 	}
-</script> -->
+</script>
 <%-- ${list } --%>
 <table class="table">
 	<tr>

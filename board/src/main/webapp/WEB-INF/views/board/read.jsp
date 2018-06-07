@@ -13,14 +13,16 @@
 </form>
 <div class="box-body"></div>
 <div class="form-group">
-	<label for="exampleInputEmail1">Title</label> <input type="text"
-		name="title" value="${boardVO.title }" readonly="readonly"
-		class="form-control" /> <label for="exampleInputPassword1">Content</label>
-	<textarea type="text" name="content" rows="3" readonly="readonly"
-		class="form-control">${boardVO.content }</textarea>
-	<label for="exampleInputEmail1">Writer</label> <input type="text"
-		name="writer" value="${boardVO.writer }" readonly="readonly"
-		class="form-control" />
+	<label for="exampleInputEmail1">Title</label> 
+	<input type="text" name="title" value="${boardVO.title }" readonly="readonly" class="form-control" />
+</div>
+<div class="form-group">
+	<label for="exampleInputPassword1">Content</label>
+	<textarea type="text" name="content" rows="3" readonly="readonly" class="form-control">${boardVO.content }</textarea>
+</div>
+<div class="form-group">
+	<label for="exampleInputEmail1">Writer</label> 
+	<input type="text" name="writer" value="${boardVO.writer }" readonly="readonly" class="form-control" />
 </div>
 <div class="box-footer">
 	<button type="submit" class="btn btn-warning">Modify</button>
