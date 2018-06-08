@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.study.board.model.BoardVO;
+import org.study.board.model.Criteria;
 import org.study.board.persistence.BoardDAO;
 
 @Service
@@ -41,5 +42,9 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> listAll() throws Exception {
 		return dao.listAll();
 	}
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		return dao.listCriteria(cri);	}
 
 }

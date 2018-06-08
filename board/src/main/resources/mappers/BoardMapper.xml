@@ -26,4 +26,21 @@
   		]]>
   	</select>
   	
+  	<select id="listpage" resultType="org.study.board.model.BoardVO">
+  		<![CDATA[
+  			select * from tbl_board
+  			where bno > 0
+  			order by bno desc, regdate desc
+  			limit #{page}, 10
+  		]]>
+  	</select>
+  	
+  	<select id="listCriteria" resultType="org.study.board.model.BoardVO">
+  		<![CDATA[
+  			select * from tbl_board
+  			where bno > 0
+  			order by bno desc, regdate desc
+  			limit #{pageStart}, #{perPageNum}
+  		]]>
+  	</select>
   </mapper>

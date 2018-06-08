@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.study.board.model.BoardVO;
+import org.study.board.model.Criteria;
 
 @Repository //아래 클라스 객체도 bean으로 만듬
 public class BoardDAOImpl implements BoardDAO {
@@ -40,6 +41,22 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> listAll() throws Exception {
 		return session.selectList(name + ".listAll");
+	}
+
+	@Override
+	public List<BoardVO> listpage(int page) throws Exception {
+		if(page <= 0) {
+			page = 1;
+		}else {
+			page = (page - 1) * 10;
+		}
+		
+		return session.selectList(name + ".listpage", page);
+	}
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		return session.selectList(name+".listCriteria",cri);
 	}
 
 }

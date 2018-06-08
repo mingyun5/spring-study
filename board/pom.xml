@@ -22,6 +22,7 @@
 			<version>${org.springframework-version}</version>
 			<exclusions>
 				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<!-- commons-logging 을 사용 목하게함 -->
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
@@ -48,6 +49,7 @@
 			<version>${org.slf4j-version}</version>
 		</dependency>
 		<dependency>
+			<!-- commons-logging 을 mapping -->
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${org.slf4j-version}</version>

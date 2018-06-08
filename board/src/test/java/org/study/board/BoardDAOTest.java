@@ -1,5 +1,7 @@
 package org.study.board;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -56,5 +58,15 @@ public class BoardDAOTest {
 	@Test
 	public void testListAll()  throws Exception{
 		dao.listAll();
+	}
+	
+	@Test
+	public void testLIstPage() throws Exception{
+		int page = 10;
+		
+		List<BoardVO> list = dao.listpage(page);
+		for(BoardVO board : list) {
+			logger.info(board.getBno() + ":" + board.getTitle());
+		}
 	}
 }

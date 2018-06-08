@@ -3,6 +3,7 @@ package org.study.board.persistence;
 import java.util.List;
 
 import org.study.board.model.BoardVO;
+import org.study.board.model.Criteria;
 
 
 public interface BoardDAO {
@@ -14,6 +15,10 @@ public interface BoardDAO {
 	
 	public void delete(Integer bno) throws Exception;
 	
-	public List<BoardVO> listAll() throws Exception;;
+	public List<BoardVO> listAll() throws Exception;
+	
+	public List<BoardVO> listpage(int page) throws Exception;
+	
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	
 }
