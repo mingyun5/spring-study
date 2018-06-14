@@ -62,28 +62,39 @@ public class BoardController {
 	public String read(@RequestParam("bno") int bno, Criteria cri,Model model) throws Exception {
 		logger.info("read.. : " + cri);
 		model.addAttribute(service.read(bno));
+		model.addAttribute("cri", cri);
 		return "/board/read";
 	}
 	
 	@RequestMapping(value="remove", method=RequestMethod.POST)
-	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr, Criteria cri) throws Exception {
 		service.remove(bno);
+		logger.info("remove..." + cri);
+		
 		
 		rttr.addFlashAttribute("result", "success");
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage?page=" +cri.getPage() +"&perPageNum=" + cri.getPerPageNum();
 	}
 	
+	// 수정	
 	@RequestMapping(value="modify", method=RequestMethod.GET)
-	public void ModifyGet( int bno, Model model) throws Exception {
+	public void ModifyGet( int bno, Model model, Criteria cri) throws Exception {
 		model.addAttribute(service.read(bno));
+		model.addAttribute("cri", cri);
+		
+		logger.info("get modify :" + cri);
 	}
 	
 	@RequestMapping(value="modify", method=RequestMethod.POST)
-	public String ModifyPost(BoardVO board, RedirectAttributes rttr) throws Exception {
+	public String ModifyPost(BoardVO board, RedirectAttributes rttr , Criteria cri) throws Exception {
 		service.modify(board);
+		
+		logger.info("post modify :" + cri);
 		rttr.addFlashAttribute("result", "success");
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage?page=" + cri.getPage() +"&perPageNum=" + cri.getPerPageNum();
 	}
+	
+	
 	
 	@RequestMapping(value="listCri", method = RequestMethod.GET)
 	public void listCri(Criteria cri, Model model) throws Exception {

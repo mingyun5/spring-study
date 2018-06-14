@@ -14,9 +14,9 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="url" value="jdbc:log4jdbc:mysql://192.168.0.199:3306/book_ex?characterEncoding=utf8" />
-		<property name="username" value="book_tester" />
-		<property name="password" value="Password!1" />
+		<property name="url" value="jdbc:log4jdbc:mysql://192.168.0.203:3306/book_ex?characterEncoding=utf8" />
+		<property name="username" value="mingyun" />
+		<property name="password" value="alsrbs3193!" />
 		<!-- <property name="connectionProperties" >
 			<props>
 				<prop key="useSSL">no</prop>
@@ -35,5 +35,6 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<!-- component들을 org.study.board에 위치한것들을 스캔하라 -->
 	<context:component-scan base-package="org.study.board"></context:component-scan>
 </beans>

@@ -9,7 +9,9 @@
 </h1>
 
 <form role='form' method='post'>
-	<input type='hidden' name='bno' value='${boardVO.bno }'>
+	<input type='hidden' name='bno' value='${boardVO.bno }' />
+	<input type='hidden' name='page' value='${cri.page }' />
+	<input type='hidden' name='perPageNum' value='${cri.perPageNum }' />
 </form>
 
 <div class='box-body'>
@@ -33,7 +35,7 @@
 <div class='box-footer'>
 	<button type='submit' class="btn btn-warning">Modify</button>
 	<button type='submit' class="btn btn-danger">Remove</button>
-	<button type='submit' class="btn btn-primary">List All</button>
+	<button type='submit' class="btn btn-primary">List</button>
 </div>
 <%@ include file="../common/footer.jspf" %>
 
@@ -53,7 +55,7 @@
 		});
 		
 		$(".btn-primary").on('click', function() {
-			self.location = "/board/listAll";
+			self.location = "/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}";
 		});
 	});
 </script>

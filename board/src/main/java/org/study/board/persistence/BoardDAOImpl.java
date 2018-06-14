@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.study.board.model.BoardVO;
 import org.study.board.model.Criteria;
 
-@Repository
+@Repository //아래 클라스 객체도 bean으로 만듬
 public class BoardDAOImpl implements BoardDAO {
 	
 	private static final String name = "org.study.board.mapper.BoardMapper";

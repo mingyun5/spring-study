@@ -6,7 +6,10 @@
 
 <h1>게시물 수정</h1>
 
+
 <form role='form' method='post'>
+	<input type='hidden' name='page' value='${cri.page }' />
+	<input type='hidden' name='perPageNum' value='${cri.perPageNum }' />
 	<div class="box-body">
 		<div class='form-group'>
 			<label>BNO</label> <input type='text' name='bno' class='form-control'
@@ -43,7 +46,7 @@
 		});
 
 		$(".btn-warning").on("click", function() {
-			self.location = "/board/listAll";
+			self.location = "/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}";
 		});
 	});
 </script>

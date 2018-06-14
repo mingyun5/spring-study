@@ -22,7 +22,7 @@
 	<c:forEach items="${list }" var="boardVO">
 		<tr>
 			<td>${boardVO.bno }</td>
-			<td><a href='/board/read?bno=${boardVO.bno}'>${boardVO.title }</a></td>
+			<td><a href='/board/read?bno=${boardVO.bno}&page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}'>${boardVO.title }</a></td>
 			<td>${boardVO.writer }</td>
 			<td><fmt:formatDate pattern="yy-MM-dd HH:mm"
 					value="${boardVO.regdate }" /></td>
@@ -40,7 +40,7 @@
 			var="idx">
 			<li  
 				<c:out value="${pageMaker.cri.page == idx? 'class=active' : '' }" />
-			><a href="listPage?page=${idx }" >${idx }</a>
+			><a href="listPage?page=${idx }&perPageNum=${pageMaker.cri.perPageNum}" >${idx }</a>
 			</li>
 		</c:forEach>
 		<c:if test="${pageMaker.next }">
@@ -58,12 +58,12 @@
 		alert("처리가 완료되었습니다.")
 	}
 	
-	$(".pagination li a").on("click", function(event) {
+	/* $(".pagination li a").on("click", function(event) {
 		event.preventDefault();
 		var targetPage = $(this).attr("href");
 		var jobForm = $("#jobForm");
 		jobForm.find("[name='page']").val(targetPage);
 		jobForm.attr("action", "/board/listPage").attr("method", "get");
 		jobForm.submit();
-	});
+	}); */
 </script>
