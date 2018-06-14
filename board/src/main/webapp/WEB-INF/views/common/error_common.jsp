@@ -11,5 +11,4 @@
 		<li>${stack.toString() }</li>
 	</c:forEach>
 </ul>
-
 <%@ include file="../common/footer.jspf"%>

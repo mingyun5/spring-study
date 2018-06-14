@@ -10,27 +10,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.study.board.model.BoardVO;
+import org.study.board.model.Criteria;
+import org.study.board.model.PageMaker;
 import org.study.board.service.BoardService;
 
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class); 
-	
+
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@Autowired
 	private BoardService service;
 	
-	@RequestMapping(value = "/register" , method=RequestMethod.GET)
+	@RequestMapping(value = "register", method=RequestMethod.GET)
 	public String registerGet() {
 		logger.info("register get");
 		
-		return "board/register";
+		return "/board/register";
 	}
 	
-	@RequestMapping(value = "/register" , method=RequestMethod.POST)
+	@RequestMapping(value = "register", method=RequestMethod.POST)
 	public String registerPost(BoardVO board, RedirectAttributes rttr) {
-		logger.info("register post" + board);
+		logger.info("register post: " + board);
 		
 		try {
 			service.regist(board);
@@ -39,48 +40,66 @@ public class BoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:/board/listAll";
 	}
 	
-//	Model 객체를 전달하는 박스 같은 것
 	@RequestMapping(value="listAll", method=RequestMethod.GET)
-	public String listAll(Model model) throws Exception{
+	public String listAll(Model model) throws Exception {
 		logger.info("show all list");
-//		리스트 가지고오기
-		model.addAttribute("list", service.listAll()); 
-//		경로
-		return "board/list";
+		model.addAttribute("list",service.listAll());
+		return "/board/list";
+	}
+	
+	@RequestMapping(value="listAll", method=RequestMethod.POST)
+	public void listAllPost(Model model) throws Exception {
+		logger.info("show all list post");
+		
 	}
 	
 	@RequestMapping(value="read", method=RequestMethod.GET)
-	public String read(@RequestParam("bno") int bno, Model model) throws Exception{
-		model.addAttribute(service.read(bno)); 
-		return "board/read";
+	public String read(@RequestParam("bno") int bno, Criteria cri,Model model) throws Exception {
+		logger.info("read.. : " + cri);
+		model.addAttribute(service.read(bno));
+		return "/board/read";
 	}
 	
-	@RequestMapping(value = "remove", method=RequestMethod.POST)
-	public String remove(@RequestParam("bno")int bno, RedirectAttributes rttr) throws Exception{
+	@RequestMapping(value="remove", method=RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
 		service.remove(bno);
 		
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:/board/listAll";
 	}
 	
-	@RequestMapping(value = "modify", method=RequestMethod.GET)
-	public void modifyGet(Model model, int bno) throws Exception{
-		logger.info("" + bno);
-		
+	@RequestMapping(value="modify", method=RequestMethod.GET)
+	public void ModifyGet( int bno, Model model) throws Exception {
 		model.addAttribute(service.read(bno));
-		
 	}
 	
-	@RequestMapping(value = "modify", method=RequestMethod.POST)
-	public String modifyPost(RedirectAttributes rttr, BoardVO board) throws Exception{
-		
+	@RequestMapping(value="modify", method=RequestMethod.POST)
+	public String ModifyPost(BoardVO board, RedirectAttributes rttr) throws Exception {
 		service.modify(board);
-		
-		rttr.addFlashAttribute("result","success");
+		rttr.addFlashAttribute("result", "success");
 		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value="listCri", method = RequestMethod.GET)
+	public void listCri(Criteria cri, Model model) throws Exception {
+		logger.info("listCri: " + cri);
+		
+		model.addAttribute("list", service.listCriteria(cri));
+	}
+	
+	@RequestMapping(value="listPage", method = RequestMethod.GET)
+	public void listPage(Criteria cri, Model model) throws Exception {
+		logger.info("listPage: " + cri);
+		
+		model.addAttribute("list", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.countBoardPage());
+		model.addAttribute("pageMaker", pageMaker);
 	}
 }

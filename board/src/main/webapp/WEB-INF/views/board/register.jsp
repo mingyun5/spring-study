@@ -3,28 +3,27 @@
 <%@ include file="../common/header.jspf"%>
 <%@ include file="../common/navigation.jspf"%>
 
-
 <h1>게시물 등록</h1>
 
-<form role="form" action="/board/register" method="post">
+<form action="/board/register" method="post">
 	<div class="box-body">
 		<div class="form-group">
-			<label for="exampleInputEmail1">Title</label> <input type="text"
-				name="title" class="form-control" placeholder="Enter Title" />
+			<label>Title</label> <input type="text" name='title'
+				class="form-control" placeholder="Enter Title">
 		</div>
 		<div class="form-group">
-			<label for="exampleInputPassword1">Content</label>
-			<textarea class="form-control" name="content" rows="3"
-				placeholder="Enter ..."></textarea>
+			<label>Content</label>
+			<textarea class="form-control" name='content' rows='3'
+				placeholder="Enter ...">
+			</textarea>
 		</div>
 		<div class="form-group">
-			<label for="exampleInputEmail1">Writer</label> <input type="text"
-				name="writer" class="form-control" placeholder="Enter writer" />
+			<label>Writer</label> <input type="text" name='writer'
+				class="form-control" placeholder="Enter Writer">
 		</div>
 	</div>
 	<div class="box-footer">
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type='submit' class="btn btn-primary">Submit</button>
 	</div>
 </form>
-
 <%@ include file="../common/footer.jspf"%>

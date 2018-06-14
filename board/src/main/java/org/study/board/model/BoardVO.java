@@ -1,5 +1,6 @@
 package org.study.board.model;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -59,12 +60,9 @@ public class BoardVO implements Comparable<BoardVO>{
 		this.viewcnt = viewcnt;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "BoardVO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
-				+ regdate + ", viewcnt=" + viewcnt + "]";
+		return "BoardVO [bno=" + bno + ", title=" + title + ", writer=" + writer + ", viewcnt=" + viewcnt + "]";
 	}
 
 	@Override
@@ -117,6 +115,7 @@ public class BoardVO implements Comparable<BoardVO>{
 		} else if (!writer.equals(other.writer))
 			return false;
 		return true;
+		
 	}
 
 	@Override
@@ -127,12 +126,3 @@ public class BoardVO implements Comparable<BoardVO>{
 
 }
 
-class BoardVOComparator implements Comparator<BoardVO>{
-
-	@Override
-	public int compare(BoardVO arg0, BoardVO arg1) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-}

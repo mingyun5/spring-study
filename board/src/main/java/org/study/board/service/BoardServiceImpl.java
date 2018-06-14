@@ -10,15 +10,12 @@ import org.study.board.persistence.BoardDAO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-	
 	@Autowired
 	private BoardDAO dao;
-	
 	
 	@Override
 	public void regist(BoardVO vo) throws Exception {
 		dao.create(vo);
-
 	}
 
 	@Override
@@ -29,13 +26,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modify(BoardVO vo) throws Exception {
 		dao.update(vo);
-
 	}
 
 	@Override
 	public void remove(int bno) throws Exception {
 		dao.delete(bno);
-
 	}
 
 	@Override
@@ -45,6 +40,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-		return dao.listCriteria(cri);	}
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public int countBoardPage() throws Exception {
+		return dao.getTotalBoardNum();
+	}
 
 }

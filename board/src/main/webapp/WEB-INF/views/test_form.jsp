@@ -1,5 +1,10 @@
-<form action="/paramtest">
-	<hidden name="msg" value ="hello" />
+
+
+<form action="/paramtest" >
+	<hidden name="msg" value="hello" />
 	
-	<input type="submit" value="submit"/>
+	<button type='submit'>submit</button>
 </form>
+
+
+

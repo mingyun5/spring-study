@@ -8,34 +8,31 @@ import org.springframework.stereotype.Repository;
 import org.study.board.model.BoardVO;
 import org.study.board.model.Criteria;
 
-@Repository //아래 클라스 객체도 bean으로 만듬
+@Repository
 public class BoardDAOImpl implements BoardDAO {
+	
+	private static final String name = "org.study.board.mapper.BoardMapper";
 	@Autowired
 	SqlSession session;
-	private static final String name ="org.study.board.mapper.BoardMapper";
-	
 	
 	@Override
 	public void create(BoardVO vo) throws Exception {
-		session.insert(name + ".create" , vo);
-
+		session.insert(name + ".create", vo);
 	}
 
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
-		return session.selectOne(name+".read", bno);
+		return session.selectOne(name + ".read", bno);
 	}
 
 	@Override
 	public void update(BoardVO vo) throws Exception {
 		session.update(name + ".update", vo);
-
 	}
 
 	@Override
 	public void delete(Integer bno) throws Exception {
 		session.delete(name + ".delete", bno);
-
 	}
 
 	@Override
@@ -44,19 +41,24 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> listpage(int page) throws Exception {
-		if(page <= 0) {
+	public List<BoardVO> listPage(int page) throws Exception {
+		if (page <= 0) {
 			page = 1;
-		}else {
-			page = (page - 1) * 10;
 		}
 		
-		return session.selectList(name + ".listpage", page);
+		page = (page - 1) * 10;
+		
+		return session.selectList(name + ".listPage", page);
 	}
 
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-		return session.selectList(name+".listCriteria",cri);
+		return session.selectList(name + ".listCriteria", cri);
+	}
+
+	@Override
+	public int getTotalBoardNum() throws Exception {
+		return session.selectOne(name + ".getTotal");
 	}
 
 }

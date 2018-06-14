@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Handles requests for the application home page.
  */
-@Controller
+@Controller 
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -25,7 +25,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "board/home";
+		return "/board/home";
 	}
 	
 	@RequestMapping(value = "/paramtest")
@@ -41,7 +41,7 @@ public class HomeController {
 		return "test";
 	}
 	
-	@RequestMapping(value = "/paramRequest",method=RequestMethod.GET)
+	@RequestMapping(value="/paramRequest", method=RequestMethod.GET)
 	public String paramRequest() {
 		return "test_form";
 	}

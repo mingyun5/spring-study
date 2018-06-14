@@ -1,8 +1,13 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file= "../common/header.jspf" %>
-<%@ include file= "../common/navigation.jspf" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" 
+		pageEncoding="UTF-8" %>
 
+<%@ include file="../common/header.jspf" %>
+<%@ include file="../common/navigation.jspf" %>
 
-<p>${serverTime }</p>
+<h1>
+	Hello world!  
+</h1>
 
-<%@ include file = "../common/footer.jspf" %>
+<P>  The time on the server is ${serverTime}. </P>
+
+<%@ include file="../common/footer.jspf" %>

@@ -10,31 +10,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.study.board.model.BoardVO;
-import org.study.board.persistence.BoardDAO;
+import org.study.board.model.Criteria;
+import org.study.board.service.BoardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
-public class BoardDAOTest {
+public class BoardServiceTest {
 
 	@Autowired
-	BoardDAO dao;
-	private static Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
-	
-	@Test
-	public void testCreate() throws Exception {
-		BoardVO vo = new BoardVO();
-		vo.setTitle("새로운 타이틀");
-		vo.setContent("새로운 컨텐트");
-		vo.setWriter("김철수");
-		
-		dao.create(vo);
-	}
+	BoardService service;
+	private static Logger logger = LoggerFactory.getLogger(BoardServiceTest.class);
 	
 	@Test
 	public void testListPage() throws Exception {
 		int page = 10;
 		
-		List<BoardVO> list = dao.listPage(page);
+		Criteria cri = new Criteria();
+		cri.setPage(5);
+		cri.setPerPageNum(20);
+		List<BoardVO> list = service.listCriteria(cri);
 		for (BoardVO board : list) {
 			logger.info(board.getBno() + ": " + board.getTitle());
 		}

@@ -6,7 +6,7 @@ import org.study.board.model.BoardVO;
 import org.study.board.model.Criteria;
 
 public interface BoardService {
-	
+
 	public void regist(BoardVO vo) throws Exception;
 	
 	public BoardVO read(int bno) throws Exception;
@@ -19,4 +19,5 @@ public interface BoardService {
 	
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	
+	public int countBoardPage() throws Exception;
 }
