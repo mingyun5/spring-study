@@ -2,10 +2,18 @@ package org.study.demo;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class Student {
 	
+	@Pattern(regexp="[^0-9]*")
 	private String studentName;
+	@NotNull @Size(min=2, max=30) @IsValidHobby(listOfValidHobbies ="music|ball|song")
 	private String studentHobby;
+	@Past
 	private Date studentDOB;
 	
 	private Address address;

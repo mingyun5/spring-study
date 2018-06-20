@@ -23,6 +23,10 @@
 	
 	<context:component-scan base-package="org.study.demo" />
 	
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basename" value="/WEB-INF/errormessages" />
+		<beans:property name="cacheSeconds" value="1"></beans:property>
+	</beans:bean>
 	
 	
 </beans:beans>

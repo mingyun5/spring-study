@@ -11,12 +11,14 @@
 	</style>
 </head>
 <body>
-<h1>
+<h1>${headerMessage }</h1>
+<h3>
 	Student Reg. Page  
-</h1>
+</h3>
+
 
 <form:errors path="student.*" cssClass="error" >
-<span id="student.errors" class="error" >Error was FOUND!!!</span>
+
 </form:errors>
 <form action='process' method="post">
 	<table>

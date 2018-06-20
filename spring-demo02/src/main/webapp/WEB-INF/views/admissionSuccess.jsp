@@ -5,9 +5,10 @@
 	<title>Admission Success page</title>
 </head>
 <body>
-<h1>
+<h1>${headerMessage }</h1>
+<h3>
 	Student Reg. Page  
-</h1>
+</h3>
 <h3>Congratulation!!</h3>
 
 <h3>Details submitted by you::</h3>
